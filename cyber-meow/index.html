@@ -1,0 +1,488 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no" />
+<title>赛博喵 CYBER MEOW — 养一只电子小猫</title>
+<meta name="description" content="领养一只赛博小猫：喂饭、洗香香、陪玩、哄睡、换装、装扮小屋。" />
+<meta name="theme-color" content="#FFF3F9" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M12 26 L16 8 L28 18 Z M52 26 L48 8 L36 18Z' fill='%23E6D2B7'/%3E%3Ccircle cx='32' cy='36' r='24' fill='%23F6ECDF'/%3E%3Ccircle cx='23' cy='37' r='7' fill='%23221C15'/%3E%3Ccircle cx='41' cy='37' r='7' fill='%23221C15'/%3E%3Ccircle cx='21' cy='34' r='2.2' fill='%23fff'/%3E%3Ccircle cx='39' cy='34' r='2.2' fill='%23fff'/%3E%3Cpath d='M29 45 h6 l-3 3z' fill='%23F2A7B0'/%3E%3C/svg%3E" />
+<link rel="manifest" href="manifest.webmanifest" />
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+<meta name="apple-mobile-web-app-title" content="赛博喵" />
+<meta name="format-detection" content="telephone=no" />
+<link rel="preload" href="fonts/zcool-kuaile.woff" as="font" type="font/woff" crossorigin />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<div class="bg-deco" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+
+<div class="holo-frame">
+<div class="device" id="device" data-coat="gold">
+
+  <!-- status bar -->
+  <div class="statusbar">
+    <span class="os">CYBER MEOW OS</span>
+    <span class="clock" id="clock">12:00</span>
+    <span class="net"><i></i><i></i><i></i> <b>♥</b> ONLINE</span>
+  </div>
+
+  <!-- HUD -->
+  <header class="hud">
+    <div class="hud-top">
+      <button class="profile" id="btnTasks" aria-label="任务与等级">
+        <span class="avatar"><svg viewBox="100 70 400 400"><use href="#miniEars"/><use href="#miniFace"/></svg><em class="lv" id="hudLv">Lv.1</em></span>
+        <span class="who">
+          <b id="hudName">奶糕</b>
+          <small id="hudTitle">初次见面</small>
+          <span class="xp"><span id="hudXp"></span></span>
+        </span>
+        <span class="dot-alert" id="taskDot" hidden></span>
+      </button>
+      <div class="coins" id="coinPill"><span class="ic" data-icon="coin"></span><b id="hudCoins">0</b></div>
+    </div>
+    <div class="needs">
+      <div class="need" data-need="food"  style="--c:#FFA27A"><span class="ring"><span class="ic" data-icon="nFood"></span></span><span class="nl">饱饱</span></div>
+      <div class="need" data-need="clean" style="--c:#6FC7F0"><span class="ring"><span class="ic" data-icon="nClean"></span></span><span class="nl">干净</span></div>
+      <div class="need" data-need="fun"   style="--c:#FF83B6"><span class="ring"><span class="ic" data-icon="nFun"></span></span><span class="nl">开心</span></div>
+      <div class="need" data-need="energy" style="--c:#A68CFF"><span class="ring"><span class="ic" data-icon="nEnergy"></span></span><span class="nl">精力</span></div>
+    </div>
+  </header>
+
+  <!-- ROOM -->
+  <section class="room-wrap">
+    <div class="room" id="room" data-scene="bedroom">
+      <svg id="scene" viewBox="0 0 400 480" preserveAspectRatio="xMidYMax meet" aria-label="小猫的房间">
+        <defs>
+          <linearGradient id="wallG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFF0F6"/><stop offset="1" stop-color="#F4EBFF"/></linearGradient>
+          <pattern id="wallDots" width="30" height="30" patternUnits="userSpaceOnUse">
+            <circle cx="6" cy="6" r="1.5" fill="#F6C6DA"/>
+            <path d="M21 17v6M18 20h6" stroke="#D9CCFA" stroke-width="1.4" stroke-linecap="round"/>
+          </pattern>
+          <pattern id="planks" width="96" height="52" patternUnits="userSpaceOnUse">
+            <rect width="96" height="52" fill="#F6E2D6"/>
+            <path d="M0 25.5H96M0 51.5H96M62 0V26M22 26V52" stroke="#EBCFC2" stroke-width="1.2"/>
+          </pattern>
+          <linearGradient id="floorShade" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#B98A9E" stop-opacity=".22"/><stop offset="1" stop-color="#B98A9E" stop-opacity="0"/></linearGradient>
+          <linearGradient id="skyDay" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9ED8FF"/><stop offset="1" stop-color="#FFE9F3"/></linearGradient>
+          <linearGradient id="skyDusk" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#B7A3F2"/><stop offset=".6" stop-color="#FFB7C9"/><stop offset="1" stop-color="#FFE0B8"/></linearGradient>
+          <linearGradient id="skyNight" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#26235A"/><stop offset="1" stop-color="#6A4F9A"/></linearGradient>
+          <linearGradient id="holo" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#9EF0E1"/><stop offset=".5" stop-color="#C8B6FF"/><stop offset="1" stop-color="#FFB3D1"/></linearGradient>
+          <radialGradient id="glowWarm" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#FFE3B0" stop-opacity=".7"/><stop offset="1" stop-color="#FFE3B0" stop-opacity="0"/></radialGradient>
+
+          <!-- coat-driven cat gradients -->
+          <radialGradient id="headGrad" cx=".5" cy=".64" r=".62">
+            <stop offset="0" style="stop-color:var(--f-light)"/><stop offset=".42" style="stop-color:var(--f-soft)"/><stop offset=".74" style="stop-color:var(--f-mid)"/><stop offset="1" style="stop-color:var(--f-top)"/>
+          </radialGradient>
+          <linearGradient id="bodyGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" style="stop-color:var(--f-body0)"/><stop offset=".45" style="stop-color:var(--f-body1)"/><stop offset="1" style="stop-color:var(--f-belly)"/>
+          </linearGradient>
+          <radialGradient id="bodySide" cx=".5" cy=".55" r=".55"><stop offset=".6" stop-color="#8C6E60" stop-opacity="0"/><stop offset="1" stop-color="#8C6E60" stop-opacity=".25"/></radialGradient>
+          <radialGradient id="ruffGrad" cx=".5" cy=".35" r=".65"><stop offset="0" stop-color="#FFFFFE"/><stop offset=".7" style="stop-color:var(--f-belly)"/><stop offset="1" style="stop-color:var(--f-body1)"/></radialGradient>
+          <linearGradient id="tailGrad" x1="0" y1="1" x2=".4" y2="0"><stop offset="0" style="stop-color:var(--f-body0)"/><stop offset="1" style="stop-color:var(--f-belly)"/></linearGradient>
+          <linearGradient id="earGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--f-ear)"/><stop offset="1" style="stop-color:var(--f-mid)"/></linearGradient>
+          <linearGradient id="earInner" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F3B4BC"/><stop offset="1" stop-color="#FCDDE0"/></linearGradient>
+          <radialGradient id="irisGrad" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#15140E"/><stop offset=".66" stop-color="#262A22"/><stop offset=".88" stop-color="#3F4A3E"/><stop offset="1" stop-color="#1F1A18"/></radialGradient>
+          <linearGradient id="noseGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F8C2C4"/><stop offset="1" stop-color="#EE99A3"/></linearGradient>
+          <radialGradient id="teddyGrad" cx=".4" cy=".35" r=".75"><stop offset="0" stop-color="#D3A57A"/><stop offset="1" stop-color="#A87852"/></radialGradient>
+          <radialGradient id="starGrad" cx=".5" cy=".5" r=".55"><stop offset="0" stop-color="#FFF9B8"/><stop offset="1" stop-color="#F6E46E"/></radialGradient>
+          <linearGradient id="bbfGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6E8BF0"/><stop offset="1" stop-color="#4A63CC"/></linearGradient>
+          <linearGradient id="shade" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4A2E16" stop-opacity="0"/><stop offset="1" stop-color="#4A2E16" stop-opacity=".35"/></linearGradient>
+
+          <pattern id="gingham" width="16" height="16" patternUnits="userSpaceOnUse">
+            <rect width="16" height="16" fill="#FFF7F9"/><rect width="8" height="16" fill="#F7A8C4" opacity=".55"/><rect width="16" height="8" fill="#F7A8C4" opacity=".55"/>
+          </pattern>
+          <pattern id="boucle" width="14" height="14" patternUnits="userSpaceOnUse">
+            <rect width="14" height="14" fill="#C39A74"/>
+            <circle cx="4" cy="4" r="3.3" fill="none" stroke="#E0BC94" stroke-width="2"/><circle cx="11" cy="10" r="3.3" fill="none" stroke="#D6AE84" stroke-width="2"/>
+            <circle cx="11" cy="2.5" r="1.8" fill="#A77E58"/><circle cx="3" cy="11" r="1.6" fill="#A77E58"/>
+          </pattern>
+          <pattern id="berry" width="34" height="34" patternUnits="userSpaceOnUse" patternTransform="rotate(-12)">
+            <rect width="34" height="34" fill="#FFF8EE"/>
+            <path d="M4 8 Q10 4 16 8 Q16 16 10 22 Q4 16 4 8Z" fill="#F0566A"/><path d="M6 7 l4 -4 l4 4" stroke="#67B45A" stroke-width="2" fill="none" stroke-linecap="round"/>
+            <path d="M21 24 Q25.5 21 30 24 Q30 30 25.5 34 Q21 30 21 24Z" fill="#F0566A"/>
+          </pattern>
+
+          <filter id="plush" x="-15%" y="-15%" width="130%" height="130%" color-interpolation-filters="sRGB">
+            <feTurbulence type="fractalNoise" baseFrequency="0.7 0.05" numOctaves="2" seed="7" result="s"/>
+            <feColorMatrix in="s" type="saturate" values="0" result="sg"/>
+            <feComposite in="SourceGraphic" in2="sg" operator="arithmetic" k1="0" k2="1" k3="0.12" k4="-0.06" result="t"/>
+            <feComposite in="t" in2="SourceAlpha" operator="in" result="t2"/>
+            <feTurbulence type="fractalNoise" baseFrequency="0.55" numOctaves="2" seed="3" result="e"/>
+            <feDisplacementMap in="t2" in2="e" scale="12" xChannelSelector="R" yChannelSelector="G"/>
+          </filter>
+          <filter id="plushBig" x="-20%" y="-20%" width="140%" height="140%" color-interpolation-filters="sRGB">
+            <feTurbulence type="fractalNoise" baseFrequency="0.6 0.04" numOctaves="2" seed="11" result="s"/>
+            <feColorMatrix in="s" type="saturate" values="0" result="sg"/>
+            <feComposite in="SourceGraphic" in2="sg" operator="arithmetic" k1="0" k2="1" k3="0.1" k4="-0.05" result="t"/>
+            <feComposite in="t" in2="SourceAlpha" operator="in" result="t2"/>
+            <feTurbulence type="fractalNoise" baseFrequency="0.42" numOctaves="3" seed="5" result="e"/>
+            <feDisplacementMap in="t2" in2="e" scale="20" xChannelSelector="R" yChannelSelector="G"/>
+          </filter>
+          <filter id="plushSoft" x="-15%" y="-15%" width="130%" height="130%">
+            <feTurbulence type="fractalNoise" baseFrequency="0.7" numOctaves="2" seed="2" result="e"/>
+            <feDisplacementMap in="SourceGraphic" in2="e" scale="6" xChannelSelector="R" yChannelSelector="G"/>
+          </filter>
+          <filter id="curly" x="-15%" y="-15%" width="130%" height="130%">
+            <feTurbulence type="turbulence" baseFrequency="0.22" numOctaves="2" seed="4" result="e"/>
+            <feDisplacementMap in="SourceGraphic" in2="e" scale="10" xChannelSelector="R" yChannelSelector="G"/>
+          </filter>
+          <filter id="blur1"><feGaussianBlur stdDeviation="1.2"/></filter>
+          <filter id="blur3" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="3"/></filter>
+          <filter id="blur7" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="7"/></filter>
+          <filter id="blur14" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="14"/></filter>
+
+          <clipPath id="headClip"><ellipse cx="300" cy="285" rx="168" ry="150"/></clipPath>
+          <clipPath id="eyeClipL"><circle cx="238" cy="298" r="46"/></clipPath>
+          <clipPath id="eyeClipR"><circle cx="362" cy="298" r="46"/></clipPath>
+          <clipPath id="winClip"><path d="M40 212 V112 A60 60 0 0 1 160 112 V212 Z"/></clipPath>
+
+          <g id="earShape">
+            <path d="M142 250 C 136 185, 150 132, 176 110 C 188 102, 198 104, 208 112 C 232 132, 256 156, 272 178 Z" fill="url(#earGrad)" filter="url(#plushSoft)"/>
+            <path d="M162 226 C 160 182, 170 147, 185 132 C 192 126, 199 128, 206 135 C 222 151, 238 168, 248 184 Z" fill="url(#earInner)" filter="url(#blur1)"/>
+            <g stroke="#FFFBF7" stroke-width="2" stroke-linecap="round" fill="none" opacity=".8"><path d="M178 218 q6 -30 16 -52"/><path d="M190 214 q8 -24 20 -40"/><path d="M170 210 q2 -22 8 -40"/></g>
+          </g>
+
+          <!-- ===== hats ===== -->
+          <g id="hat-star-b"><path id="starShape" d="" fill="url(#starGrad)" stroke="#F6E97C" stroke-width="56" stroke-linejoin="round" filter="url(#plush)"/></g>
+          <g id="hat-star-f">
+            <path d="M128 300 C 118 170, 205 108, 300 106 C 395 108, 482 170, 472 300 C 455 222, 385 178, 300 176 C 215 178, 145 222, 128 300 Z" fill="#F8EF8C" filter="url(#plush)"/>
+            <path d="M190 428 Q300 474 410 428 L404 458 Q300 508 196 458 Z" fill="#F8EF8C" filter="url(#plush)"/>
+            <circle cx="268" cy="468" r="7.5" fill="#F4A3B6"/><circle cx="332" cy="468" r="7.5" fill="#F4A3B6"/>
+          </g>
+          <g id="hat-bunny-b">
+            <ellipse cx="300" cy="288" rx="194" ry="180" fill="#FFFAFC" filter="url(#plushBig)"/>
+            <g transform="rotate(-14 232 120)"><ellipse cx="232" cy="6" rx="46" ry="108" fill="#FFFAFC" filter="url(#plush)"/><ellipse cx="232" cy="18" rx="21" ry="74" fill="#F7BACB" filter="url(#blur3)"/></g>
+            <g transform="rotate(24 372 120)"><ellipse cx="372" cy="10" rx="44" ry="102" fill="#FFFAFC" filter="url(#plush)"/><ellipse cx="372" cy="22" rx="20" ry="68" fill="#F7BACB" filter="url(#blur3)"/></g>
+          </g>
+          <g id="hat-bunny-f">
+            <path d="M128 300 C 118 170, 205 108, 300 106 C 395 108, 482 170, 472 300 C 455 222, 385 178, 300 176 C 215 178, 145 222, 128 300 Z" fill="#FFFBFD" filter="url(#plushBig)"/>
+          </g>
+          <g id="hat-bear-f">
+            <path d="M134 262 C 124 150, 210 72, 330 48 C 348 44, 366 34, 378 22 C 392 70, 446 130, 466 262 C 400 212, 200 212, 134 262 Z" fill="url(#boucle)" filter="url(#plush)"/>
+            <path d="M138 258 C 200 206, 400 206, 462 258" fill="none" stroke="#B48B63" stroke-width="30" stroke-linecap="round" filter="url(#plush)"/>
+            <circle cx="380" cy="22" r="36" fill="#FFF6E6" filter="url(#plushBig)"/>
+          </g>
+          <g id="hat-bow-f">
+            <g transform="translate(408 168) rotate(20)">
+              <path d="M-4 16 L-20 52 L-8 47 L2 16 Z M4 16 L18 54 L26 44 L8 14 Z" fill="#F29BB3"/>
+              <path d="M0 0 C -20 -32, -60 -36, -62 -6 C -64 22, -26 24, 0 0 Z M0 0 C 20 -32, 60 -36, 62 -6 C 64 22, 26 24, 0 0 Z" fill="#F9B6CA"/>
+              <path d="M-8 -4 C -26 -18, -42 -18, -50 -8 M8 -4 C 26 -18, 42 -18, 50 -8" stroke="#EE93AC" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+              <ellipse rx="12" ry="14" fill="#F29BB3"/><ellipse cx="-3" cy="-5" rx="4" ry="3" fill="#fff" opacity=".7"/>
+            </g>
+          </g>
+
+          <!-- ===== collars ===== -->
+          <g id="col-cyber">
+            <path d="M186 424 Q300 462 414 424 L411 446 Q300 486 189 446 Z" fill="#FF9EC4"/>
+            <path d="M192 432 Q300 468 408 432" stroke="#fff" stroke-opacity=".7" stroke-width="2.4" stroke-dasharray="1 7" stroke-linecap="round" fill="none"/>
+            <g transform="translate(300 488)">
+              <circle class="tag-glow" r="30" fill="url(#holo)" filter="url(#blur7)"/>
+              <rect x="-4" y="-26" width="8" height="10" rx="3" fill="#EADDF5"/>
+              <path d="M0 16 C -26 0, -21 -21, -7 -19 C -3 -18, 0 -14, 0 -11 C 0 -14, 3 -18, 7 -19 C 21 -21, 26 0, 0 16Z" fill="url(#holo)" stroke="#fff" stroke-width="2.5"/>
+              <path d="M-11 -9 h5 M-11 -4 h2" stroke="#fff" stroke-width="2.2" stroke-linecap="square"/>
+            </g>
+          </g>
+          <g id="col-gingham">
+            <path d="M166 405 C 168 500, 238 550, 300 550 C 362 550, 432 500, 434 405 C 380 434, 220 434, 166 405 Z" fill="url(#gingham)"/>
+            <path d="M166 405 C 168 500, 238 550, 300 550 C 362 550, 432 500, 434 405" fill="none" stroke="#FFFDFB" stroke-width="15" stroke-dasharray="0.1 13" stroke-linecap="round"/>
+            <path d="M166 405 C 168 500, 238 550, 300 550 C 362 550, 432 500, 434 405" fill="none" stroke="#FFFDFB" stroke-width="5"/>
+            <path d="M300 418 C 262 474, 200 474, 184 428 C 222 424, 268 420, 300 418 Z M300 418 C 338 474, 400 474, 416 428 C 378 424, 332 420, 300 418 Z" fill="#FFFDFB" stroke="#F1E2E8"/>
+            <g fill="#C9637F">
+              <g transform="translate(236 452) scale(.36) rotate(-8)"><path d="M0 0 C -20 -32, -60 -36, -62 -6 C -64 22, -26 24, 0 0 Z M0 0 C 20 -32, 60 -36, 62 -6 C 64 22, 26 24, 0 0 Z"/><ellipse rx="12" ry="14"/></g>
+              <g transform="translate(364 452) scale(.36) rotate(8)"><path d="M0 0 C -20 -32, -60 -36, -62 -6 C -64 22, -26 24, 0 0 Z M0 0 C 20 -32, 60 -36, 62 -6 C 64 22, 26 24, 0 0 Z"/><ellipse rx="12" ry="14"/></g>
+            </g>
+            <circle cx="300" cy="492" r="7.5" fill="#F9C5D5"/><circle cx="300" cy="524" r="7.5" fill="#F9C5D5"/>
+          </g>
+          <g id="col-tie">
+            <path d="M300 416 L204 424 Q222 474 264 470 Z M300 416 L396 424 Q378 474 336 470 Z" fill="#9C7458"/>
+            <path d="M289 462 L311 462 L334 562 L300 596 L266 562 Z" fill="url(#berry)" stroke="#EAD9C6" stroke-width="1.5"/>
+            <path d="M282 434 L318 434 L312 466 L288 466 Z" fill="url(#berry)" stroke="#EAD9C6" stroke-width="1.5"/>
+          </g>
+          <g id="col-bbf">
+            <path d="M172 416 Q300 440 428 416 L316 572 Q300 588 284 572 Z" fill="url(#bbfGrad)"/>
+            <g transform="rotate(-5 300 490)" font-family="Silkscreen, monospace" font-weight="700" text-anchor="middle" fill="#fff" stroke="#2E47A8" stroke-width="3" paint-order="stroke">
+              <text x="300" y="480" font-size="17">BEST</text><text x="300" y="501" font-size="17">BUTTER</text><text x="300" y="522" font-size="17">FRIENDS</text>
+            </g>
+          </g>
+
+          <!-- ===== minis ===== -->
+          <g id="miniEars">
+            <path d="M150 240 C 145 175, 160 130, 185 115 C 210 125, 240 150, 262 172 Z" style="fill:var(--f-ear)"/>
+            <path d="M450 240 C 455 175, 440 130, 415 115 C 390 125, 360 150, 338 172 Z" style="fill:var(--f-ear)"/>
+            <path d="M168 222 C 166 185, 175 152, 188 140 C 205 150, 228 168, 240 184Z M432 222 C 434 185, 425 152, 412 140 C 395 150, 372 168, 360 184Z" fill="#F7C3CB"/>
+          </g>
+          <g id="miniFace">
+            <ellipse cx="300" cy="285" rx="168" ry="150" fill="url(#headGrad)"/>
+            <ellipse cx="300" cy="190" rx="120" ry="60" style="fill:var(--f-tabby)" opacity=".35"/>
+            <circle cx="238" cy="298" r="42" fill="#221C15"/><circle cx="362" cy="298" r="42" fill="#221C15"/>
+            <circle cx="224" cy="282" r="12" fill="#fff"/><circle cx="348" cy="282" r="12" fill="#fff"/>
+            <circle cx="252" cy="314" r="5" fill="#fff" opacity=".8"/><circle cx="376" cy="314" r="5" fill="#fff" opacity=".8"/>
+            <ellipse cx="192" cy="352" rx="26" ry="12" fill="#F7B6C2" opacity=".6"/><ellipse cx="408" cy="352" rx="26" ry="12" fill="#F7B6C2" opacity=".6"/>
+            <path d="M290 338 Q300 334 310 338 Q306 348 300 350 Q294 348 290 338Z" fill="#EE9FA8"/>
+            <path d="M300 350 v8 M300 358 q-8 8 -16 3 M300 358 q8 8 16 3" stroke="#C99A92" stroke-width="3" fill="none" stroke-linecap="round"/>
+          </g>
+          <g id="miniChest"><ellipse cx="300" cy="510" rx="170" ry="130" style="fill:var(--f-belly)"/></g>
+          <g id="miniChin"><ellipse cx="300" cy="380" rx="160" ry="50" style="fill:var(--f-soft)"/></g>
+
+          <!-- ===== decor art (also used in shop) ===== -->
+          <g id="art-lights">
+            <path d="M8 30 Q100 70 200 42 Q300 16 392 50" fill="none" stroke="#CDBBE6" stroke-width="2"/>
+            <g id="bulbs"></g>
+          </g>
+          <g id="art-plant">
+            <ellipse cx="372" cy="340" rx="24" ry="5" fill="#B98AA0" opacity=".2"/>
+            <g fill="#9FDBAE"><circle cx="360" cy="262" r="15"/><circle cx="384" cy="252" r="13"/><circle cx="372" cy="236" r="12"/><circle cx="352" cy="240" r="10"/><circle cx="392" cy="274" r="11"/></g>
+            <g fill="#7CC795"><circle cx="366" cy="270" r="8"/><circle cx="382" cy="244" r="6"/></g>
+            <path d="M372 300 V250 M372 284 L358 262 M372 272 L386 254" stroke="#6FB585" stroke-width="3" stroke-linecap="round"/>
+            <path d="M350 292 H394 L388 338 H356 Z" fill="#FFFFFF"/><rect x="350" y="300" width="44" height="7" fill="#FFB3CD"/>
+          </g>
+          <g id="art-rug">
+            <path d="M92 452 C 70 452, 66 428, 88 424 C 88 406, 116 400, 128 412 C 140 394, 176 396, 184 412 C 196 398, 236 398, 244 414 C 258 400, 296 402, 302 418 C 316 408, 342 414, 336 430 C 356 432, 354 456, 330 456 C 300 470, 130 470, 92 452Z" fill="#F0EAFF" stroke="#D9CCFF" stroke-width="3"/>
+            <path d="M104 446 C 150 458, 290 458, 322 444" fill="none" stroke="#fff" stroke-width="3" stroke-dasharray="2 8" stroke-linecap="round"/>
+          </g>
+          <g id="art-teddy">
+            <g filter="url(#curly)">
+              <circle cx="115" cy="638" r="40" fill="url(#teddyGrad)"/><circle cx="288" cy="632" r="40" fill="url(#teddyGrad)"/>
+              <ellipse cx="195" cy="912" rx="130" ry="152" fill="url(#teddyGrad)"/>
+              <ellipse cx="118" cy="1052" rx="64" ry="46" fill="url(#teddyGrad)"/><ellipse cx="272" cy="1064" rx="64" ry="46" fill="url(#teddyGrad)"/>
+              <circle cx="200" cy="722" r="110" fill="url(#teddyGrad)"/>
+            </g>
+            <ellipse cx="200" cy="758" rx="46" ry="36" fill="#E4C09B"/>
+            <path d="M188 740 Q200 734 212 740 Q210 752 200 756 Q190 752 188 740Z" fill="#4A2E1E"/>
+            <circle cx="162" cy="712" r="8" fill="#1C120C"/><circle cx="238" cy="712" r="8" fill="#1C120C"/>
+            <ellipse cx="150" cy="760" rx="18" ry="9" fill="#F4A3B6" opacity=".6"/><ellipse cx="250" cy="760" rx="18" ry="9" fill="#F4A3B6" opacity=".6"/>
+          </g>
+        </defs>
+
+        <!-- ===== room ===== -->
+        <g id="bg-bedroom" class="scene-layer" data-scene="bedroom">
+        <rect x="-600" y="-900" width="1600" height="1236" fill="#FFF0F6"/>
+        <rect x="-600" y="0" width="1600" height="336" fill="url(#wallG)"/>
+        <rect x="-600" y="-900" width="1600" height="1236" fill="url(#wallDots)" opacity=".75"/>
+
+        <!-- window -->
+        <g id="window">
+          <g clip-path="url(#winClip)">
+            <rect id="sky" x="40" y="50" width="120" height="164" fill="url(#skyDay)"/>
+            <g id="skyDayArt">
+              <circle cx="128" cy="94" r="14" fill="#FFE58F"/><circle cx="128" cy="94" r="22" fill="#FFE58F" opacity=".25"/>
+              <g fill="#fff" opacity=".95" class="cloud"><ellipse cx="72" cy="140" rx="20" ry="9"/><ellipse cx="86" cy="134" rx="14" ry="10"/><ellipse cx="60" cy="144" rx="12" ry="6"/></g>
+              <g fill="#fff" opacity=".8" class="cloud c2"><ellipse cx="130" cy="176" rx="16" ry="7"/><ellipse cx="140" cy="171" rx="10" ry="8"/></g>
+            </g>
+            <g id="skyNightArt" style="display:none">
+              <path d="M132 82 a16 16 0 1 0 12 26 a13 13 0 1 1 -12 -26Z" fill="#FFF3C9"/>
+              <g fill="#fff" class="twinkle"><circle cx="62" cy="96" r="1.6"/><circle cx="86" cy="120" r="1.2"/><circle cx="108" cy="80" r="1.4"/><circle cx="70" cy="160" r="1.3"/><circle cx="118" cy="150" r="1.6"/><circle cx="146" cy="130" r="1.1"/><circle cx="54" cy="130" r="1"/></g>
+            </g>
+          </g>
+          <path d="M40 212 V112 A60 60 0 0 1 160 112 V212 Z" fill="none" stroke="#fff" stroke-width="7"/>
+          <path d="M100 54 V212 M40 150 H160" stroke="#fff" stroke-width="4"/>
+          <rect x="30" y="208" width="140" height="10" rx="5" fill="#fff"/>
+          <rect x="26" y="44" width="148" height="6" rx="3" fill="#E9B6CD"/>
+          <path d="M30 48 Q56 58 52 112 Q48 168 66 222 L30 222 Z" fill="#FFC6DA"/>
+          <path d="M170 48 Q144 58 148 112 Q152 168 134 222 L170 222 Z" fill="#FFC6DA"/>
+          <path d="M40 70 Q46 130 44 200 M160 70 Q154 130 156 200" stroke="#FFB0CB" stroke-width="2" fill="none"/>
+        </g>
+
+        <!-- pixel heart frame -->
+        <g transform="rotate(3 292 108)">
+          <rect x="250" y="76" width="84" height="66" rx="10" fill="#fff" stroke="url(#holo)" stroke-width="4"/>
+          <g id="pixHeart"></g>
+          <text x="292" y="136" text-anchor="middle" font-family="Silkscreen, monospace" font-size="7" fill="#C9A6D8">MEOW.EXE</text>
+        </g>
+
+        <!-- upper wall decor (only on tall phones) -->
+        <g id="upperDecor" style="display:none">
+          <g class="hang"><path d="M72 -700 V-58" stroke="#E4CBE0" stroke-width="1.5"/><path d="M72 -76l6 12 13 2-9.5 9 2.3 13L72 -46l-11.8 6 2.3-13-9.5-9 13-2z" fill="#FFE08A"/></g>
+          <g class="hang h2"><path d="M112 -700 V-24" stroke="#E4CBE0" stroke-width="1.5"/><path d="M112 -40l4.5 9 10 1.4-7.3 7 1.7 10L112 -17l-9 4.4 1.7-10-7.3-7 10-1.4z" fill="#FFB3D1"/></g>
+          <g class="hang h3"><path d="M150 -700 V-70" stroke="#E4CBE0" stroke-width="1.5"/><circle cx="150" cy="-62" r="8" fill="#C8B6FF"/><circle cx="147" cy="-65" r="2.4" fill="#fff" opacity=".8"/></g>
+          <ellipse cx="298" cy="14" rx="74" ry="6" fill="#B98AA0" opacity=".16" filter="url(#blur3)"/>
+          <rect x="226" y="0" width="146" height="9" rx="4.5" fill="#fff"/>
+          <path d="M246 9v10h6M352 9v10h-6" stroke="#EBD6E6" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <!-- tiny CRT -->
+          <rect x="238" y="-62" width="72" height="60" rx="15" fill="#FFD3E6"/>
+          <rect x="246" y="-55" width="56" height="42" rx="9" fill="#2E2552"/>
+          <g fill="#FF9EC4">
+            <rect x="259" y="-47" width="4" height="4"/><rect x="285" y="-47" width="4" height="4"/>
+            <rect x="259" y="-43" width="30" height="4"/><rect x="259" y="-39" width="30" height="12"/>
+          </g>
+          <g fill="#2E2552"><rect x="266" y="-37" width="4" height="4"/><rect x="278" y="-37" width="4" height="4"/></g>
+          <rect x="272" y="-31" width="4" height="2" fill="#fff"/>
+          <rect x="246" y="-55" width="56" height="42" rx="9" fill="url(#holo)" opacity=".16"/>
+          <circle cx="300" cy="-8" r="2.2" fill="#9EF0E1" class="bulb"/>
+          <!-- plant + books -->
+          <path d="M322 -16h24l-3 16h-18z" fill="#fff" stroke="#F4C9DA" stroke-width="2"/>
+          <g fill="#9FDBAE"><circle cx="328" cy="-24" r="7"/><circle cx="340" cy="-28" r="8"/><circle cx="334" cy="-36" r="6"/></g>
+          <rect x="352" y="-38" width="9" height="38" rx="2" fill="#B9E8DA"/><rect x="362" y="-32" width="8" height="32" rx="2" fill="#D9CCFF" transform="rotate(8 366 0)"/>
+        </g>
+
+        <use id="decor-lights" href="#art-lights" style="display:none"/>
+
+        <rect x="-600" y="328" width="1600" height="9" fill="#FFFFFF"/>
+        <rect x="-600" y="337" width="1600" height="400" fill="url(#planks)"/>
+        <rect x="-600" y="337" width="1600" height="30" fill="url(#floorShade)"/>
+
+        <g id="rugDefault">
+          <ellipse cx="200" cy="448" rx="138" ry="28" fill="#FFD6E6"/>
+          <ellipse cx="200" cy="448" rx="120" ry="21" fill="none" stroke="#fff" stroke-width="3" stroke-dasharray="2 9" stroke-linecap="round"/>
+        </g>
+        <use id="decor-rug" href="#art-rug" style="display:none"/>
+        <use id="decor-plant" href="#art-plant" style="display:none"/>
+        <use id="decor-teddy" href="#art-teddy" transform="translate(-6 222) scale(.2)" style="display:none"/>
+
+        <!-- bed -->
+        <g id="bed">
+          <ellipse cx="318" cy="446" rx="68" ry="10" fill="#B07A8E" opacity=".2" filter="url(#blur3)"/>
+          <ellipse cx="318" cy="428" rx="74" ry="26" fill="#F7A9C4"/>
+          <ellipse cx="318" cy="426" rx="60" ry="16" fill="#FFE6EF"/>
+        </g>
+
+        </g>
+        <g id="bg-kitchen" class="scene-layer" data-scene="kitchen" style="display:none"></g>
+        <g id="bg-bath" class="scene-layer" data-scene="bath" style="display:none"></g>
+        <g id="bg-garden" class="scene-layer" data-scene="garden" style="display:none"></g>
+
+        <g id="hairballs"></g>
+
+        <!-- ===== cat ===== -->
+        <g id="cat"></g>
+
+        <g id="fg-bedroom" class="scene-layer" data-scene="bedroom">
+        <g id="bedFront">
+          <path d="M244 428 Q244 458 318 460 Q392 458 392 428 Q356 450 318 450 Q280 450 244 428Z" fill="#F597BA"/>
+          <path d="M266 440 Q318 456 370 440" stroke="#fff" stroke-opacity=".6" stroke-width="2.5" fill="none" stroke-dasharray="2 7" stroke-linecap="round"/>
+        </g>
+
+        <!-- bowl -->
+        <g id="bowl">
+          <ellipse cx="66" cy="466" rx="36" ry="7" fill="#B07A8E" opacity=".2" filter="url(#blur3)"/>
+          <ellipse cx="66" cy="444" rx="31" ry="8" fill="#E57FA8"/>
+          <g id="bowlFood" style="display:none">
+            <ellipse cx="66" cy="442" rx="25" ry="7" fill="#C98A5B" id="foodMound"/>
+            <circle cx="56" cy="439" r="4" fill="#fff" opacity=".25"/><circle cx="72" cy="438" r="3" fill="#fff" opacity=".25"/>
+          </g>
+          <path d="M35 444 Q37 468 66 468 Q95 468 97 444 Q66 456 35 444Z" fill="#FFA6C9"/>
+          <path d="M58 458 q6 -6 12 0 q-6 6 -12 0z M70 458 l5 -4 v8z" fill="#fff"/>
+        </g>
+
+        </g>
+        <g id="fg-kitchen" class="scene-layer" data-scene="kitchen" style="display:none"></g>
+        <g id="fg-bath" class="scene-layer" data-scene="bath" style="display:none"></g>
+        <g id="fg-garden" class="scene-layer" data-scene="garden" style="display:none"></g>
+
+        <rect id="dusk" x="-600" y="-900" width="1600" height="1700" fill="#2A2150" pointer-events="none"/>
+        <ellipse id="nightGlow" cx="318" cy="410" rx="120" ry="90" fill="url(#glowWarm)" pointer-events="none"/>
+      </svg>
+
+      <!-- room overlays -->
+      <nav class="scene-nav" id="sceneNav" aria-label="切换场景">
+        <button data-go="bedroom" class="on" aria-label="卧室"><svg viewBox="0 0 24 24"><path d="M3 18v-6a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v6M3 15h18M6 9V7a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><b>卧室</b></button>
+        <button data-go="kitchen" aria-label="厨房"><svg viewBox="0 0 24 24"><circle cx="10" cy="13" r="6" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 13h6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><path d="M8 6c0-2 2-2 2-4M11 6c0-2 2-2 2-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><b>厨房</b></button>
+        <button data-go="bath" aria-label="浴室"><svg viewBox="0 0 24 24"><path d="M3 12h18v2a5 5 0 0 1-5 5H8a5 5 0 0 1-5-5zM6 12V6a2 2 0 0 1 4 0M7 21l1-2M17 21l-1-2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><b>浴室</b></button>
+        <button data-go="garden" aria-label="花园"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="2.4" fill="currentColor"/><path d="M12 3.5a2.6 2.6 0 0 1 0 5.2 2.6 2.6 0 0 1 0-5.2M7.5 8a2.6 2.6 0 0 1 4.5 0M16.5 8a2.6 2.6 0 0 0-4.5 0M12 11v9M12 17c-3 0-5-2-5-4 3 0 5 2 5 4M12 15c2.4 0 4-1.6 4-3.4-2.4 0-4 1.6-4 3.4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><b>花园</b></button>
+      </nav>
+      <div class="bubble" id="bubble"></div>
+      <div class="fx" id="fx" aria-hidden="true"></div>
+      <div class="bathbar" id="bathBar" hidden>
+        <span>🫧 用海绵在它身上搓搓</span>
+        <span class="bb-track"><i id="bathProg"></i></span>
+        <button id="bathCancel" aria-label="结束洗澡">✕</button>
+      </div>
+
+      <!-- mini game -->
+      <div class="mini" id="mini" hidden>
+        <canvas id="miniCanvas"></canvas>
+        <div class="mini-hud"><span>SCORE <b id="miniScore">0</b></span><span>TIME <b id="miniTime">25</b></span></div>
+        <div class="mini-center" id="miniCenter"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DOCK -->
+  <nav class="dock">
+    <button class="gum" data-act="feed" style="--c:#FFA27A;--cs:#FFE3D6;--cd:#F08A60"><span class="ic" data-icon="food"></span><span>喂食</span></button>
+    <button class="gum" data-act="bath" style="--c:#6FC7F0;--cs:#DDF3FF;--cd:#4FB0DD"><span class="ic" data-icon="bath"></span><span>洗澡</span></button>
+    <button class="gum big" data-act="play" style="--c:#FF83B6;--cs:#FFE0EE;--cd:#EE6AA0"><span class="ic" data-icon="play"></span><span>玩耍</span></button>
+    <button class="gum" data-act="sleep" id="btnSleep" style="--c:#A68CFF;--cs:#ECE6FF;--cd:#8C6FF0"><span class="ic" data-icon="sleep"></span><span id="sleepLbl">睡觉</span></button>
+    <button class="gum" data-act="closet" style="--c:#F3C24D;--cs:#FFF3CC;--cd:#DDA92E"><span class="ic" data-icon="closet"></span><span>衣橱</span></button>
+  </nav>
+
+  <!-- sheets -->
+  <div class="scrim" id="scrim" hidden></div>
+  <section class="sheet" id="sheet" aria-modal="true" role="dialog" hidden>
+    <div class="grab"></div>
+    <header class="sheet-head"><h2 id="sheetTitle">喂食</h2><button class="x" id="sheetClose" aria-label="关闭">✕</button></header>
+    <div class="tabs" id="sheetTabs"></div>
+    <div class="sheet-body" id="sheetBody"></div>
+  </section>
+
+  <div class="toast" id="toast"></div>
+
+  <!-- level up -->
+  <div class="levelup" id="levelUp" hidden>
+    <div class="lu-card">
+      <span class="pix">LEVEL UP!</span>
+      <b id="luLv">Lv.2</b>
+      <p id="luTitle">有点熟了</p>
+      <small id="luReward">奖励 🐟×40</small>
+      <button class="cta" id="luOk">好耶！</button>
+    </div>
+  </div>
+
+  <!-- adopt -->
+  <section class="adopt" id="adopt" hidden>
+    <span class="pix sm">NEW PET · 领养中心</span>
+    <h1>领养一只<br><em>赛博小猫</em></h1>
+    <div class="adopt-cat"><svg viewBox="60 60 540 640"><use href="#miniEars"/><use href="#miniFace"/></svg></div>
+    <div class="coat-row" id="coatRow"></div>
+    <label class="name-field">
+      <span>给它起个名字</span>
+      <input id="adoptName" maxlength="8" placeholder="奶糕" autocomplete="off" />
+      <span class="name-sugg" id="nameSugg"></span>
+    </label>
+    <button class="cta" id="adoptGo">把它带回家 ♥</button>
+  </section>
+
+  <!-- install guide -->
+  <div class="install" id="install" hidden>
+    <div class="install-card">
+      <span class="pix sm">ADD TO HOME SCREEN</span>
+      <b>把 <em id="insName">小猫</em> 放到手机桌面</b>
+      <p id="insText">像 App 一样全屏打开，断网也能陪它玩。</p>
+      <ol id="insSteps" hidden>
+        <li>点 Safari 底部的 <span class="share-ic">⬆︎</span> 分享按钮</li>
+        <li>往下滑，选「添加到主屏幕」</li>
+        <li>点右上角「添加」，桌面就有它啦</li>
+      </ol>
+      <div class="row"><button class="cta ghost" id="insLater">以后再说</button><button class="cta" id="insGo">放到桌面</button></div>
+    </div>
+  </div>
+
+  <!-- boot -->
+  <section class="boot" id="boot">
+    <div class="boot-logo">
+      <svg viewBox="0 0 16 14" class="pixcat" aria-hidden="true">
+        <path d="M2 0h2v1h1v1h6V1h1V0h2v6h1v5h-1v1h-1v1H3v-1H2v-1H1V6h1z" fill="#FF83B6"/>
+        <path d="M4 6h2v2H4zM10 6h2v2h-2z" fill="#3A2A3A"/><path d="M7 9h2v1H7z" fill="#fff"/>
+      </svg>
+      <b>CYBER MEOW</b>
+      <span>赛 博 喵</span>
+    </div>
+    <div class="boot-bar"><i></i></div>
+    <small class="pix sm" id="bootMsg">WAKING UP KITTY...</small>
+  </section>
+</div>
+</div>
+
+<div class="rotate" aria-hidden="true"><div><span>📱</span><b>竖着拿手机玩更舒服哦</b></div></div>
+<aside class="desk-hint"><b>📱 在手机上玩</b><span>用手机浏览器打开这个网址，<br>再「添加到主屏幕」就像 App 一样</span></aside>
+
+<script src="cat.js"></script>
+<script src="art.js"></script>
+<script src="scenes.js"></script>
+<script src="game.js"></script>
+</body>
+</html>

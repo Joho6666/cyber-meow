@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>赛博喵 · 小猫写真棚</title>
+<link rel="stylesheet" href="style.css" />
+<style>
+  body { overflow: auto; display: block; }
+  .studio { min-height: 100svh; display: grid; grid-template-rows: auto 1fr auto; gap: 8px; padding: 22px; max-width: 900px; margin: 0 auto; }
+  .studio header { display: flex; justify-content: space-between; align-items: baseline; }
+  .studio h1 { margin: 0; font-size: 28px; font-weight: 400; }
+  .studio h1 small { font: 400 11px var(--pix); color: var(--ink-2); margin-left: 8px; letter-spacing: .08em; }
+  .studio a { font-size: 14px; color: var(--ink-2); }
+  .stage {
+    position: relative; border-radius: 36px; overflow: hidden;
+    background: radial-gradient(70% 60% at 50% 40%, #FFFFFF, #FBEFF6 60%, #F0E8FF);
+    box-shadow: 0 0 0 5px #fff, 0 30px 50px -30px rgba(140, 90, 150, .5);
+    min-height: 60svh;
+  }
+  .stage svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .bar { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; padding: 10px 0 4px; }
+  .bar button { padding: 9px 16px; border: 0; border-radius: 999px; background: #fff; box-shadow: 0 0 0 2px #F3E3EF; font-size: 14px; }
+  .bar button.on { background: var(--ink); color: #fff; box-shadow: none; }
+  .bar .sep { width: 1px; background: #EAD9E6; margin: 0 4px; }
+</style>
+</head>
+<body>
+<div class="studio" id="device" data-coat="gold">
+  <header><h1>小猫写真棚<small>CAT STUDIO · 1:1 MODEL</small></h1><a href="./">← 回到游戏</a></header>
+  <div class="stage">
+    <svg id="scene" viewBox="20 -110 600 830" preserveAspectRatio="xMidYMid meet">
+      <defs></defs>
+      <g id="cat"></g>
+    </svg>
+  </div>
+  <div class="bar" id="bar">
+    <button data-coat="gold" class="on">金渐层</button><button data-coat="silver">银渐层</button><button data-coat="bluewhite">蓝白</button><button data-coat="orange">奶橘</button>
+    <span class="sep"></span>
+    <button data-mood="idle" class="on">发呆</button><button data-mood="happy">开心</button><button data-mood="sleep">睡觉</button><button data-mood="sad">委屈</button><button data-mood="wow">好奇</button>
+    <span class="sep"></span>
+    <button data-hat="none" class="on">不戴</button><button data-hat="star">星星帽</button><button data-hat="bunny">兔兔帽</button><button data-hat="bear">小熊帽</button><button data-hat="bow">樱花结</button>
+  </div>
+</div>
+<script src="cat.js"></script>
+<script src="art.js"></script>
+<script>
+(() => {
+  const svg = document.getElementById('scene'), dev = document.getElementById('device');
+  const $ = (id) => document.getElementById(id);
+  let mood = 'idle', ptr = null, s = 1, nextBlink = 1500, blinkAt = -1, ex = 0, ey = 0, hr = 0, hx = 0, hy = 0;
+  const q = new URLSearchParams(location.search);
+  if (q.get('coat')) dev.dataset.coat = q.get('coat');
+  if (q.get('mood')) mood = q.get('mood');
+  document.querySelectorAll('#bar [data-coat]').forEach((b) => { b.classList.toggle('on', b.dataset.coat === dev.dataset.coat); b.onclick = () => { dev.dataset.coat = b.dataset.coat; document.querySelectorAll('#bar [data-coat]').forEach((x) => x.classList.toggle('on', x === b)); }; });
+  document.querySelectorAll('#bar [data-mood]').forEach((b) => { b.classList.toggle('on', b.dataset.mood === mood); b.onclick = () => { mood = b.dataset.mood; document.querySelectorAll('#bar [data-mood]').forEach((x) => x.classList.toggle('on', x === b)); }; });
+  const pt = svg.createSVGPoint();
+  svg.addEventListener('pointermove', (e) => { pt.x = e.clientX; pt.y = e.clientY; ptr = pt.matrixTransform(svg.getScreenCTM().inverse()); });
+  svg.addEventListener('pointerleave', () => { ptr = null; });
+  $('slotCollar').setAttribute('href', '#none');
+  const HATS = { star: ['hat-star-b', 'hat-star-f', 1], bunny: ['hat-bunny-b', 'hat-bunny-f', 1], bear: [0, 'hat-bear-f', 1], bow: [0, 'hat-bow-f', 0] };
+  function wear(id) {
+    const h = HATS[id] || [0, 0, 0];
+    [['slotHatBack', h[0]], ['slotHatFront', h[1]]].forEach(([slot, ref]) => { const n = $(slot); if (ref) { n.setAttribute('href', '#' + ref); n.style.display = ''; } else n.style.display = 'none'; });
+    $('ears').style.display = h[2] ? 'none' : '';
+    document.querySelectorAll('#bar [data-hat]').forEach((x) => x.classList.toggle('on', x.dataset.hat === id));
+  }
+  document.querySelectorAll('#bar [data-hat]').forEach((b) => { b.onclick = () => wear(b.dataset.hat); });
+  wear(q.get('hat') || 'none');
+  function frame(t) {
+    const time = t / 1000;
+    const tg = ptr && mood !== 'sleep' ? ptr : { x: 300, y: 300 };
+    const dx = tg.x - 300, dy = tg.y - 300, d = Math.hypot(dx, dy) || 1, m = Math.min(6.5, d / 20);
+    ex += (dx / d * m - ex) * .2; ey += (dy / d * m - ey) * .2;
+    let thr = Math.max(-7, Math.min(7, dx / 48)), thy = Math.max(-5, Math.min(6, dy / 50));
+    if (mood === 'sleep') { thr = 7; thy = 16; } if (mood === 'wow') thr = -8 + Math.sin(time * 2) * 1.5; if (mood === 'sad') thy = 8;
+    hr += (thr - hr) * .1; hy += (thy - hy) * .1; hx += ((mood === 'sleep' ? 4 : Math.max(-9, Math.min(9, dx / 34))) - hx) * .1;
+    if (t > nextBlink && blinkAt < 0 && (mood === 'idle' || mood === 'wow' || mood === 'sad')) blinkAt = t;
+    s = 1;
+    if (blinkAt > 0) { const p = (t - blinkAt) / 170; if (p >= 1) { blinkAt = -1; nextBlink = t + 2000 + Math.random() * 3500; } else s = 1 - Math.sin(p * Math.PI); }
+    if (mood === 'sad') s = Math.min(s, .78);
+    const br = Math.sin(time * (mood === 'sleep' ? 1.1 : 2)) * (mood === 'sleep' ? .022 : .01);
+    $('bodyG').setAttribute('transform', `translate(300 670) scale(${1 - br * .4} ${1 + br}) translate(-300 -670)`);
+    $('head').setAttribute('transform', `translate(${hx.toFixed(2)} ${(hy - br * 140).toFixed(2)}) rotate(${hr.toFixed(2)} 300 420)`);
+    $('tail').setAttribute('transform', `rotate(${(Math.sin(time * 1.2) * 5).toFixed(2)} 410 625)`);
+    const wa = Math.sin(time * 1.6) * 1.4;
+    $('whiskL').setAttribute('transform', `rotate(${wa} 270 364)`); $('whiskR').setAttribute('transform', `rotate(${-wa} 330 364)`);
+    CatModel.eyes(ex, ey, mood === 'wow' ? 1 : .3, s);
+    $('eyesOpen').style.display = mood === 'happy' || mood === 'sleep' ? 'none' : '';
+    $('happyEyes').style.display = mood === 'happy' ? '' : 'none';
+    $('sleepEyes').style.display = mood === 'sleep' ? '' : 'none';
+    $('sadBrows').style.display = mood === 'sad' ? '' : 'none';
+    $('blush').setAttribute('opacity', mood === 'happy' ? .85 : .45);
+    const ears = mood === 'sad' ? -10 : mood === 'wow' ? 5 : 0;
+    $('earL').setAttribute('transform', `rotate(${ears} 205 205)`); $('earR').setAttribute('transform', `rotate(${-ears} 395 205)`);
+    $('mouthOpen').setAttribute('ry', mood === 'wow' ? 5 : 0);
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>

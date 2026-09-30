@@ -1,0 +1,590 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>奶糕 Naigao — 一只电子小猫</title>
+<meta name="description" content="一只住在杂志封面上的电子小猫。摸摸它、给它换衣服、陪它玩。" />
+<meta name="theme-color" content="#E6DCCF" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='34' r='26' fill='%23EAD9C2'/%3E%3Ccircle cx='23' cy='35' r='7' fill='%23221C15'/%3E%3Ccircle cx='41' cy='35' r='7' fill='%23221C15'/%3E%3Ccircle cx='21' cy='32' r='2' fill='%23fff'/%3E%3Ccircle cx='39' cy='32' r='2' fill='%23fff'/%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..900,0..100,0..1;1,9..144,300..900,0..100,0..1&family=Noto+Serif+SC:wght@400;600;900&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<main class="shell">
+
+  <!-- ============ COVER ============ -->
+  <section class="stage" aria-label="奶糕的封面">
+    <div class="cover" id="cover">
+      <svg id="scene" viewBox="0 0 1000 1250" role="img" aria-label="一只奶油渐层长毛小猫，坐在墙角仰头看你">
+        <defs>
+          <!-- room -->
+          <linearGradient id="wall" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#F8F3EC"/><stop offset=".78" stop-color="#EFE6DA"/><stop offset="1" stop-color="#E8DDCE"/>
+          </linearGradient>
+          <linearGradient id="floorGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#D2C2AF"/><stop offset="1" stop-color="#E1D4C5"/>
+          </linearGradient>
+          <linearGradient id="floorShade" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#7A5C45" stop-opacity=".22"/><stop offset="1" stop-color="#7A5C45" stop-opacity="0"/>
+          </linearGradient>
+          <pattern id="herring" width="72" height="36" patternUnits="userSpaceOnUse">
+            <path d="M0 36 L18 18 L36 36 L54 18 L72 36 M0 18 L18 0 L36 18 L54 0 L72 18" fill="none" stroke="#B29C85" stroke-width="1"/>
+          </pattern>
+          <linearGradient id="duskGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#241C38"/><stop offset=".7" stop-color="#3A2D3E"/><stop offset="1" stop-color="#3E2F2A"/>
+          </linearGradient>
+          <radialGradient id="lampGlow" cx=".5" cy=".5" r=".5">
+            <stop offset="0" stop-color="#FFE2AE" stop-opacity=".55"/><stop offset="1" stop-color="#FFE2AE" stop-opacity="0"/>
+          </radialGradient>
+
+          <!-- cat -->
+          <radialGradient id="headGrad" cx=".5" cy=".64" r=".62">
+            <stop offset="0" stop-color="#FFFDF9"/><stop offset=".42" stop-color="#F6ECDF"/><stop offset=".74" stop-color="#E6D2B7"/><stop offset="1" stop-color="#CDB392"/>
+          </radialGradient>
+          <linearGradient id="bodyGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#D9BF9E"/><stop offset=".45" stop-color="#ECDDC8"/><stop offset="1" stop-color="#FAF5EE"/>
+          </linearGradient>
+          <radialGradient id="bodySide" cx=".5" cy=".55" r=".55">
+            <stop offset=".6" stop-color="#9C7A58" stop-opacity="0"/><stop offset="1" stop-color="#9C7A58" stop-opacity=".3"/>
+          </radialGradient>
+          <radialGradient id="ruffGrad" cx=".5" cy=".35" r=".65">
+            <stop offset="0" stop-color="#FFFFFD"/><stop offset=".7" stop-color="#FAF4EA"/><stop offset="1" stop-color="#EDE0CE"/>
+          </radialGradient>
+          <linearGradient id="tailGrad" x1="0" y1="1" x2=".4" y2="0">
+            <stop offset="0" stop-color="#D6BC99"/><stop offset="1" stop-color="#FBF6EF"/>
+          </linearGradient>
+          <linearGradient id="earGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#C2A683"/><stop offset="1" stop-color="#E7D6BF"/>
+          </linearGradient>
+          <linearGradient id="earInner" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#EDB5B2"/><stop offset="1" stop-color="#F7DCD5"/>
+          </linearGradient>
+          <radialGradient id="irisGrad" cx=".5" cy=".5" r=".5">
+            <stop offset="0" stop-color="#15140E"/><stop offset=".66" stop-color="#2B2E20"/><stop offset=".88" stop-color="#4B4E37"/><stop offset="1" stop-color="#1F1A13"/>
+          </radialGradient>
+          <linearGradient id="noseGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#F6C4C0"/><stop offset="1" stop-color="#E09A98"/>
+          </linearGradient>
+          <radialGradient id="teddyGrad" cx=".4" cy=".35" r=".75">
+            <stop offset="0" stop-color="#CFA173"/><stop offset="1" stop-color="#A0704A"/>
+          </radialGradient>
+          <radialGradient id="starGrad" cx=".5" cy=".5" r=".55">
+            <stop offset="0" stop-color="#FBF8B6"/><stop offset="1" stop-color="#EFE36C"/>
+          </radialGradient>
+          <linearGradient id="carrotGrad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#FF8D48"/><stop offset="1" stop-color="#E5541D"/>
+          </linearGradient>
+          <linearGradient id="bbfGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#3B66CC"/><stop offset="1" stop-color="#2646A0"/>
+          </linearGradient>
+          <linearGradient id="basketShade" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#4A2E16" stop-opacity="0"/><stop offset="1" stop-color="#4A2E16" stop-opacity=".38"/>
+          </linearGradient>
+
+          <!-- textiles -->
+          <pattern id="gingham" width="16" height="16" patternUnits="userSpaceOnUse">
+            <rect width="16" height="16" fill="#F4F1EA"/>
+            <rect width="8" height="16" fill="#7E9C8E" opacity=".55"/>
+            <rect width="16" height="8" fill="#7E9C8E" opacity=".55"/>
+          </pattern>
+          <pattern id="weave" width="28" height="18" patternUnits="userSpaceOnUse">
+            <rect width="28" height="18" fill="#B07C4A"/>
+            <rect x="1" y="1" width="12" height="7" rx="3.5" fill="#D6A56E"/>
+            <rect x="15" y="10" width="12" height="7" rx="3.5" fill="#D6A56E"/>
+            <rect x="15" y="1" width="12" height="7" rx="3.5" fill="#C28E58"/>
+            <rect x="1" y="10" width="12" height="7" rx="3.5" fill="#C28E58"/>
+          </pattern>
+          <pattern id="boucle" width="14" height="14" patternUnits="userSpaceOnUse">
+            <rect width="14" height="14" fill="#B4855A"/>
+            <circle cx="4" cy="4" r="3.3" fill="none" stroke="#D5AA7C" stroke-width="2"/>
+            <circle cx="11" cy="10" r="3.3" fill="none" stroke="#CB9D6E" stroke-width="2"/>
+            <circle cx="11" cy="2.5" r="1.8" fill="#9A6D45"/>
+            <circle cx="3" cy="11" r="1.6" fill="#9A6D45"/>
+          </pattern>
+          <pattern id="berry" width="34" height="34" patternUnits="userSpaceOnUse" patternTransform="rotate(-12)">
+            <rect width="34" height="34" fill="#FBF6EC"/>
+            <path d="M4 8 Q10 4 16 8 Q16 16 10 22 Q4 16 4 8Z" fill="#E0474C"/>
+            <path d="M6 7 l4 -4 l4 4" stroke="#5DA34B" stroke-width="2" fill="none" stroke-linecap="round"/>
+            <circle cx="8" cy="11" r=".9" fill="#FFE9E0"/><circle cx="12" cy="12" r=".9" fill="#FFE9E0"/><circle cx="10" cy="16" r=".9" fill="#FFE9E0"/>
+            <path d="M21 24 Q25.5 21 30 24 Q30 30 25.5 34 Q21 30 21 24Z" fill="#E0474C"/>
+            <path d="M23 23 l2.5 -3 l2.5 3" stroke="#5DA34B" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+          </pattern>
+
+          <!-- filters -->
+          <filter id="plush" x="-15%" y="-15%" width="130%" height="130%" color-interpolation-filters="sRGB">
+            <feTurbulence type="fractalNoise" baseFrequency="0.7 0.05" numOctaves="2" seed="7" result="s"/>
+            <feColorMatrix in="s" type="saturate" values="0" result="sg"/>
+            <feComposite in="SourceGraphic" in2="sg" operator="arithmetic" k1="0" k2="1" k3="0.14" k4="-0.07" result="t"/>
+            <feComposite in="t" in2="SourceAlpha" operator="in" result="t2"/>
+            <feTurbulence type="fractalNoise" baseFrequency="0.55" numOctaves="2" seed="3" result="e"/>
+            <feDisplacementMap in="t2" in2="e" scale="12" xChannelSelector="R" yChannelSelector="G"/>
+          </filter>
+          <filter id="plushBig" x="-20%" y="-20%" width="140%" height="140%" color-interpolation-filters="sRGB">
+            <feTurbulence type="fractalNoise" baseFrequency="0.6 0.04" numOctaves="2" seed="11" result="s"/>
+            <feColorMatrix in="s" type="saturate" values="0" result="sg"/>
+            <feComposite in="SourceGraphic" in2="sg" operator="arithmetic" k1="0" k2="1" k3="0.12" k4="-0.06" result="t"/>
+            <feComposite in="t" in2="SourceAlpha" operator="in" result="t2"/>
+            <feTurbulence type="fractalNoise" baseFrequency="0.42" numOctaves="3" seed="5" result="e"/>
+            <feDisplacementMap in="t2" in2="e" scale="22" xChannelSelector="R" yChannelSelector="G"/>
+          </filter>
+          <filter id="plushSoft" x="-15%" y="-15%" width="130%" height="130%">
+            <feTurbulence type="fractalNoise" baseFrequency="0.7" numOctaves="2" seed="2" result="e"/>
+            <feDisplacementMap in="SourceGraphic" in2="e" scale="6" xChannelSelector="R" yChannelSelector="G"/>
+          </filter>
+          <filter id="curly" x="-15%" y="-15%" width="130%" height="130%" color-interpolation-filters="sRGB">
+            <feTurbulence type="fractalNoise" baseFrequency="0.14" numOctaves="3" seed="9" result="s"/>
+            <feColorMatrix in="s" type="saturate" values="0" result="sg"/>
+            <feComposite in="SourceGraphic" in2="sg" operator="arithmetic" k1="0" k2="1" k3="0.3" k4="-0.15" result="t"/>
+            <feComposite in="t" in2="SourceAlpha" operator="in" result="t2"/>
+            <feTurbulence type="turbulence" baseFrequency="0.22" numOctaves="2" seed="4" result="e"/>
+            <feDisplacementMap in="t2" in2="e" scale="10" xChannelSelector="R" yChannelSelector="G"/>
+          </filter>
+          <filter id="blur1"><feGaussianBlur stdDeviation="1.2"/></filter>
+          <filter id="blur3" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="3"/></filter>
+          <filter id="blur7" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="7"/></filter>
+          <filter id="blur14" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="14"/></filter>
+          <filter id="blur60" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="60"/></filter>
+
+          <clipPath id="headClip"><ellipse cx="300" cy="285" rx="168" ry="150"/></clipPath>
+          <clipPath id="eyeClipL"><circle cx="238" cy="298" r="46"/></clipPath>
+          <clipPath id="eyeClipR"><circle cx="362" cy="298" r="46"/></clipPath>
+
+          <!-- ear -->
+          <g id="earShape">
+            <path d="M142 250 C 136 185, 150 132, 176 110 C 188 102, 198 104, 208 112 C 232 132, 256 156, 272 178 Z" fill="url(#earGrad)" filter="url(#plushSoft)"/>
+            <path d="M162 226 C 160 182, 170 147, 185 132 C 192 126, 199 128, 206 135 C 222 151, 238 168, 248 184 Z" fill="url(#earInner)" filter="url(#blur1)"/>
+            <g stroke="#FFFBF5" stroke-width="2" stroke-linecap="round" fill="none" opacity=".8">
+              <path d="M178 218 q6 -30 16 -52"/><path d="M190 214 q8 -24 20 -40"/><path d="M170 210 q2 -22 8 -40"/>
+            </g>
+          </g>
+
+          <!-- ========= hats ========= -->
+          <g id="hat-star-b">
+            <path id="starShape" d="" fill="url(#starGrad)" stroke="#F2E877" stroke-width="56" stroke-linejoin="round" filter="url(#plush)"/>
+          </g>
+          <g id="hat-star-f">
+            <path d="M128 300 C 118 170, 205 108, 300 106 C 395 108, 482 170, 472 300 C 455 222, 385 178, 300 176 C 215 178, 145 222, 128 300 Z" fill="#F6EE88" filter="url(#plush)"/>
+            <path d="M136 292 C 152 222, 218 182, 300 180 C 382 182, 448 222, 464 292" fill="none" stroke="#B89F4A" stroke-opacity=".22" stroke-width="6" filter="url(#blur3)"/>
+            <path d="M190 428 Q300 474 410 428 L404 458 Q300 508 196 458 Z" fill="#F6EE88" filter="url(#plush)"/>
+            <circle cx="268" cy="468" r="7.5" fill="#F0A6B1"/><circle cx="332" cy="468" r="7.5" fill="#F0A6B1"/>
+            <circle cx="266" cy="466" r="2" fill="#fff" opacity=".7"/><circle cx="330" cy="466" r="2" fill="#fff" opacity=".7"/>
+          </g>
+
+          <g id="hat-bunny-b">
+            <ellipse cx="300" cy="288" rx="194" ry="180" fill="#FBF7F1" filter="url(#plushBig)"/>
+            <g transform="rotate(-14 232 120)">
+              <ellipse cx="232" cy="6" rx="46" ry="108" fill="#FBF7F1" filter="url(#plush)"/>
+              <ellipse cx="232" cy="18" rx="21" ry="74" fill="#F3BEC2" filter="url(#blur3)"/>
+            </g>
+            <g transform="rotate(24 372 120)">
+              <ellipse cx="372" cy="10" rx="44" ry="102" fill="#FBF7F1" filter="url(#plush)"/>
+              <ellipse cx="372" cy="22" rx="20" ry="68" fill="#F3BEC2" filter="url(#blur3)"/>
+            </g>
+          </g>
+          <g id="hat-bunny-f">
+            <path d="M128 300 C 118 170, 205 108, 300 106 C 395 108, 482 170, 472 300 C 455 222, 385 178, 300 176 C 215 178, 145 222, 128 300 Z" fill="#FCF9F4" filter="url(#plushBig)"/>
+            <path d="M138 292 C 152 222, 218 184, 300 182 C 382 184, 448 222, 462 292" fill="none" stroke="#A88E70" stroke-opacity=".2" stroke-width="6" filter="url(#blur3)"/>
+          </g>
+
+          <g id="hat-bear-f">
+            <path d="M134 262 C 124 150, 210 72, 330 48 C 348 44, 366 34, 378 22 C 392 70, 446 130, 466 262 C 400 212, 200 212, 134 262 Z" fill="url(#boucle)" filter="url(#plush)"/>
+            <path d="M134 262 C 124 150, 210 72, 330 48 C 348 44, 366 34, 378 22 C 392 70, 446 130, 466 262 Z" fill="url(#basketShade)" opacity=".35"/>
+            <path d="M138 258 C 200 206, 400 206, 462 258" fill="none" stroke="#A67A50" stroke-width="30" stroke-linecap="round" filter="url(#plush)"/>
+            <path d="M144 250 C 204 200, 396 200, 456 250" fill="none" stroke="#C99C6E" stroke-width="5" stroke-linecap="round" opacity=".6"/>
+            <circle cx="380" cy="22" r="36" fill="#FBF3DF" filter="url(#plushBig)"/>
+            <circle cx="370" cy="12" r="14" fill="#fff" opacity=".6" filter="url(#blur7)"/>
+          </g>
+
+          <g id="hat-bow-f">
+            <g transform="translate(408 168) rotate(20)">
+              <path d="M-4 16 L-20 52 L-8 47 L2 16 Z" fill="#EFA9B4"/>
+              <path d="M4 16 L18 54 L26 44 L8 14 Z" fill="#EFA9B4"/>
+              <path d="M0 0 C -20 -32, -60 -36, -62 -6 C -64 22, -26 24, 0 0 Z" fill="#F5BDC5"/>
+              <path d="M0 0 C 20 -32, 60 -36, 62 -6 C 64 22, 26 24, 0 0 Z" fill="#F5BDC5"/>
+              <path d="M-8 -4 C -26 -18, -42 -18, -50 -8 M-10 4 C -26 10, -40 10, -50 2" stroke="#E596A4" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+              <path d="M8 -4 C 26 -18, 42 -18, 50 -8 M10 4 C 26 10, 40 10, 50 2" stroke="#E596A4" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+              <ellipse rx="12" ry="14" fill="#EDA2AF"/>
+              <ellipse cx="-3" cy="-5" rx="4" ry="3" fill="#fff" opacity=".6"/>
+            </g>
+          </g>
+
+          <!-- ========= collars ========= -->
+          <g id="col-gingham">
+            <path d="M166 405 C 168 500, 238 550, 300 550 C 362 550, 432 500, 434 405 C 380 434, 220 434, 166 405 Z" fill="url(#gingham)"/>
+            <path d="M166 405 C 168 500, 238 550, 300 550 C 362 550, 432 500, 434 405" fill="none" stroke="#FCF9F3" stroke-width="15" stroke-dasharray="0.1 13" stroke-linecap="round"/>
+            <path d="M166 405 C 168 500, 238 550, 300 550 C 362 550, 432 500, 434 405" fill="none" stroke="#FCF9F3" stroke-width="5"/>
+            <path d="M300 418 C 262 474, 200 474, 184 428 C 222 424, 268 420, 300 418 Z" fill="#FDFBF7" stroke="#E9E0D2" stroke-width="1"/>
+            <path d="M300 418 C 338 474, 400 474, 416 428 C 378 424, 332 420, 300 418 Z" fill="#FDFBF7" stroke="#E9E0D2" stroke-width="1"/>
+            <path d="M300 418 C 262 474, 200 474, 184 428 M300 418 C 338 474, 400 474, 416 428" fill="none" stroke="#FDFBF7" stroke-width="10" stroke-dasharray="0.1 10" stroke-linecap="round"/>
+            <g fill="#6A3F2A">
+              <g transform="translate(236 452) scale(.36) rotate(-8)"><path d="M0 0 C -20 -32, -60 -36, -62 -6 C -64 22, -26 24, 0 0 Z M0 0 C 20 -32, 60 -36, 62 -6 C 64 22, 26 24, 0 0 Z M-4 12 L-24 60 L-10 56 L2 14 Z M4 12 L22 60 L32 50 L8 12Z"/><ellipse rx="12" ry="14"/></g>
+              <g transform="translate(364 452) scale(.36) rotate(8)"><path d="M0 0 C -20 -32, -60 -36, -62 -6 C -64 22, -26 24, 0 0 Z M0 0 C 20 -32, 60 -36, 62 -6 C 64 22, 26 24, 0 0 Z M-4 12 L-24 60 L-10 56 L2 14 Z M4 12 L22 60 L32 50 L8 12Z"/><ellipse rx="12" ry="14"/></g>
+            </g>
+            <g fill="#F2B7C5"><circle cx="300" cy="490" r="7.5"/><circle cx="300" cy="524" r="7.5"/></g>
+            <g fill="#C98796"><circle cx="298" cy="490" r="1.3"/><circle cx="302" cy="490" r="1.3"/><circle cx="298" cy="524" r="1.3"/><circle cx="302" cy="524" r="1.3"/></g>
+          </g>
+
+          <g id="col-tie">
+            <path d="M300 416 L204 424 Q222 474 264 470 Z" fill="#8C6440"/>
+            <path d="M300 416 L396 424 Q378 474 336 470 Z" fill="#8C6440"/>
+            <path d="M292 422 L214 428 Q228 464 262 462" fill="none" stroke="#B48A60" stroke-width="1.6" stroke-dasharray="4 4"/>
+            <path d="M308 422 L386 428 Q372 464 338 462" fill="none" stroke="#B48A60" stroke-width="1.6" stroke-dasharray="4 4"/>
+            <path d="M289 462 L311 462 L334 562 L300 596 L266 562 Z" fill="url(#berry)" stroke="#E5D6C0" stroke-width="1.5"/>
+            <path d="M282 434 L318 434 L312 466 L288 466 Z" fill="url(#berry)" stroke="#E5D6C0" stroke-width="1.5"/>
+            <path d="M289 462 L300 596 L266 562 Z" fill="#5a3a20" opacity=".06"/>
+          </g>
+
+          <g id="col-bbf">
+            <path d="M172 416 Q300 440 428 416 L316 572 Q300 588 284 572 Z" fill="url(#bbfGrad)"/>
+            <path d="M184 424 Q300 446 416 424" fill="none" stroke="#fff" stroke-opacity=".25" stroke-width="2" stroke-dasharray="3 5"/>
+            <g transform="rotate(-5 300 478)" font-family="Fraunces, serif" font-weight="900" font-style="italic" text-anchor="middle" fill="#FFFFFF" stroke="#18347E" stroke-width="3" paint-order="stroke" letter-spacing="1">
+              <text x="300" y="476" font-size="20">BEST</text>
+              <text x="300" y="498" font-size="20">BUTTER</text>
+              <text x="300" y="520" font-size="20">FRIENDS</text>
+            </g>
+            <g transform="translate(210 436) rotate(-18)">
+              <path d="M-16 -10 Q0 -22 16 -10 Q22 6 10 16 Q0 22 -10 16 Q-22 6 -16 -10Z" fill="#E8BA7C"/>
+              <circle cx="-5" cy="-3" r="2.2" fill="#8E5A2E"/><circle cx="6" cy="3" r="2.2" fill="#8E5A2E"/><circle cx="-2" cy="9" r="1.8" fill="#8E5A2E"/>
+            </g>
+          </g>
+
+          <!-- ========= minis for wardrobe cards ========= -->
+          <g id="miniEars">
+            <path d="M150 240 C 145 175, 160 130, 185 115 C 210 125, 240 150, 262 172 Z" fill="#D5BD9C"/>
+            <path d="M450 240 C 455 175, 440 130, 415 115 C 390 125, 360 150, 338 172 Z" fill="#D5BD9C"/>
+          </g>
+          <g id="miniFace">
+            <ellipse cx="300" cy="285" rx="168" ry="150" fill="url(#headGrad)"/>
+            <circle cx="238" cy="298" r="40" fill="#221C15"/><circle cx="362" cy="298" r="40" fill="#221C15"/>
+            <circle cx="225" cy="283" r="11" fill="#fff"/><circle cx="349" cy="283" r="11" fill="#fff"/>
+            <path d="M290 338 Q300 334 310 338 Q306 348 300 350 Q294 348 290 338Z" fill="#EBA9A6"/>
+          </g>
+          <g id="miniChest"><ellipse cx="300" cy="510" rx="170" ry="130" fill="#F4EBE0"/></g>
+          <g id="miniChin"><ellipse cx="300" cy="380" rx="160" ry="50" fill="#EADCC8"/></g>
+        </defs>
+
+        <!-- ============ room ============ -->
+        <rect width="1000" height="1250" fill="url(#wall)"/>
+        <ellipse cx="160" cy="120" rx="520" ry="420" fill="#FFFDF8" opacity=".6" filter="url(#blur60)"/>
+        <rect x="0" y="0" width="34" height="1000" fill="#CDBBA6" opacity=".12" filter="url(#blur14)"/>
+        <rect y="985" width="1000" height="24" fill="#FBF8F2"/>
+        <rect y="985" width="1000" height="1.5" fill="#E0D3C3"/>
+        <rect y="1009" width="1000" height="241" fill="url(#floorGrad)"/>
+        <rect y="1009" width="1000" height="241" fill="url(#herring)" opacity=".45"/>
+        <rect y="1009" width="1000" height="46" fill="url(#floorShade)"/>
+
+        <text id="masthead" class="mast" x="500" y="318" text-anchor="middle">Naigao</text>
+
+        <!-- ============ teddy ============ -->
+        <g id="teddy" transform="translate(20 150) scale(.88)">
+          <ellipse cx="190" cy="1092" rx="170" ry="18" fill="#6B4A33" opacity=".16" filter="url(#blur7)"/>
+          <g filter="url(#curly)">
+            <circle cx="115" cy="638" r="40" fill="url(#teddyGrad)"/>
+            <circle cx="288" cy="632" r="40" fill="url(#teddyGrad)"/>
+            <ellipse cx="195" cy="912" rx="130" ry="152" fill="url(#teddyGrad)"/>
+            <ellipse cx="82" cy="880" rx="42" ry="92" fill="url(#teddyGrad)" transform="rotate(18 82 880)"/>
+            <ellipse cx="118" cy="1052" rx="64" ry="46" fill="url(#teddyGrad)"/>
+            <ellipse cx="272" cy="1064" rx="64" ry="46" fill="url(#teddyGrad)"/>
+            <circle cx="200" cy="722" r="110" fill="url(#teddyGrad)"/>
+          </g>
+          <circle cx="115" cy="640" r="18" fill="#8A5E3B" opacity=".55" filter="url(#blur3)"/>
+          <circle cx="288" cy="634" r="18" fill="#8A5E3B" opacity=".55" filter="url(#blur3)"/>
+          <ellipse cx="200" cy="758" rx="46" ry="36" fill="#D8B28B" filter="url(#curly)"/>
+          <path d="M188 740 Q200 734 212 740 Q210 752 200 756 Q190 752 188 740Z" fill="#4A2E1E"/>
+          <path d="M200 756 v10 M188 772 q12 8 24 0" stroke="#4A2E1E" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <circle cx="162" cy="712" r="7.5" fill="#1C120C"/><circle cx="238" cy="712" r="7.5" fill="#1C120C"/>
+          <circle cx="160" cy="709" r="2" fill="#fff" opacity=".8"/><circle cx="236" cy="709" r="2" fill="#fff" opacity=".8"/>
+          <ellipse cx="118" cy="1060" rx="30" ry="22" fill="#8C6040" opacity=".35" filter="url(#blur3)"/>
+        </g>
+
+        <!-- ============ cat ============ -->
+        <g id="cat" transform="translate(125 245) scale(1.25)">
+          <g id="catInner">
+            <ellipse id="catShadow" cx="300" cy="672" rx="200" ry="20" fill="#6B4A33" opacity=".2" filter="url(#blur7)"/>
+
+            <g id="tail">
+              <path d="M410 622 C 500 628, 562 582, 562 500 C 562 440, 522 410, 492 432" fill="none" stroke="url(#tailGrad)" stroke-width="68" stroke-linecap="round" filter="url(#plushBig)"/>
+            </g>
+
+            <g id="basketBack" style="display:none">
+              <ellipse cx="300" cy="565" rx="238" ry="40" fill="#5E3A1E" stroke="#B98552" stroke-width="14"/>
+            </g>
+
+            <g id="bodyG">
+              <g filter="url(#plushBig)">
+                <ellipse cx="300" cy="505" rx="178" ry="165" fill="url(#bodyGrad)"/>
+                <ellipse cx="300" cy="505" rx="178" ry="165" fill="url(#bodySide)"/>
+              </g>
+              <g filter="url(#plush)">
+                <ellipse cx="262" cy="598" rx="40" ry="58" fill="#F7EEE2"/>
+                <ellipse cx="338" cy="598" rx="40" ry="58" fill="#F7EEE2"/>
+              </g>
+              <path d="M175 400 C 190 350, 410 350, 425 400 C 440 470, 390 540, 300 562 C 210 540, 160 470, 175 400 Z" fill="url(#ruffGrad)" filter="url(#plushBig)"/>
+              <use id="slotCollar" href="#col-gingham" style="display:none"/>
+            </g>
+
+            <!-- head -->
+            <g id="head">
+              <use id="slotHatBack" href="#hat-star-b" style="display:none"/>
+              <ellipse cx="300" cy="335" rx="196" ry="138" fill="#F1E6D6" filter="url(#plushBig)"/>
+              <g id="ears">
+                <g id="earL"><use href="#earShape"/></g>
+                <g id="earR"><g transform="translate(600 0) scale(-1 1)"><use href="#earShape"/></g></g>
+              </g>
+              <g filter="url(#plushBig)">
+                <ellipse cx="172" cy="345" rx="62" ry="58" fill="#EFE2D0"/>
+                <ellipse cx="428" cy="345" rx="62" ry="58" fill="#EFE2D0"/>
+              </g>
+              <ellipse cx="300" cy="285" rx="168" ry="150" fill="url(#headGrad)" filter="url(#plush)"/>
+              <g clip-path="url(#headClip)">
+                <ellipse cx="300" cy="170" rx="150" ry="78" fill="#B59C7E" opacity=".5" filter="url(#blur14)"/>
+                <ellipse cx="146" cy="262" rx="40" ry="90" fill="#B59C7E" opacity=".22" filter="url(#blur14)"/>
+                <ellipse cx="454" cy="262" rx="40" ry="90" fill="#B59C7E" opacity=".22" filter="url(#blur14)"/>
+              </g>
+              <g opacity=".3" stroke="#977E63" stroke-width="3" stroke-linecap="round" fill="none" filter="url(#blur1)">
+                <path d="M300 150 L300 205"/><path d="M283 156 Q279 180 286 200"/><path d="M317 156 Q321 180 314 200"/>
+                <path d="M266 166 Q262 181 270 196"/><path d="M334 166 Q338 181 330 196"/>
+              </g>
+              <g stroke="#A0856A" stroke-width="3" fill="none" opacity=".35" filter="url(#blur1)">
+                <path d="M192 304 Q176 320 170 338"/><path d="M408 304 Q424 320 430 338"/>
+              </g>
+              <g fill="#FFFDF8" filter="url(#blur3)">
+                <ellipse cx="280" cy="361" rx="30" ry="22"/><ellipse cx="320" cy="361" rx="30" ry="22"/>
+                <ellipse cx="300" cy="388" rx="24" ry="14"/>
+              </g>
+              <g id="blush" opacity=".38" fill="#F4B1B4" filter="url(#blur7)">
+                <ellipse cx="194" cy="354" rx="28" ry="13"/><ellipse cx="406" cy="354" rx="28" ry="13"/>
+              </g>
+
+              <!-- eyes -->
+              <g id="eyesOpen">
+                <g id="eyeL">
+                  <circle cx="238" cy="298" r="53" fill="#8A6C52" opacity=".2" filter="url(#blur3)"/>
+                  <g clip-path="url(#eyeClipL)">
+                    <circle cx="238" cy="298" r="46" fill="url(#irisGrad)"/>
+                    <circle id="pupilL" cx="238" cy="298" r="37" fill="#060504" filter="url(#blur1)"/>
+                    <ellipse cx="238" cy="340" rx="40" ry="14" fill="#fff" opacity=".07"/>
+                  </g>
+                  <circle cx="238" cy="298" r="46" fill="none" stroke="#2A1F17" stroke-width="3.2"/>
+                  <g id="glintL">
+                    <ellipse cx="222" cy="280" rx="13" ry="10.5" fill="#fff" transform="rotate(-25 222 280)"/>
+                    <circle cx="256" cy="316" r="5.5" fill="#fff" opacity=".85"/>
+                    <circle cx="238" cy="271" r="2.6" fill="#fff" opacity=".9"/>
+                    <path d="M210 322 Q238 340 266 322" stroke="#fff" stroke-width="2" fill="none" opacity=".16"/>
+                  </g>
+                </g>
+                <g id="eyeR">
+                  <circle cx="362" cy="298" r="53" fill="#8A6C52" opacity=".2" filter="url(#blur3)"/>
+                  <g clip-path="url(#eyeClipR)">
+                    <circle cx="362" cy="298" r="46" fill="url(#irisGrad)"/>
+                    <circle id="pupilR" cx="362" cy="298" r="37" fill="#060504" filter="url(#blur1)"/>
+                    <ellipse cx="362" cy="340" rx="40" ry="14" fill="#fff" opacity=".07"/>
+                  </g>
+                  <circle cx="362" cy="298" r="46" fill="none" stroke="#2A1F17" stroke-width="3.2"/>
+                  <g id="glintR">
+                    <ellipse cx="346" cy="280" rx="13" ry="10.5" fill="#fff" transform="rotate(-25 346 280)"/>
+                    <circle cx="380" cy="316" r="5.5" fill="#fff" opacity=".85"/>
+                    <circle cx="362" cy="271" r="2.6" fill="#fff" opacity=".9"/>
+                    <path d="M334 322 Q362 340 390 322" stroke="#fff" stroke-width="2" fill="none" opacity=".16"/>
+                  </g>
+                </g>
+              </g>
+              <g id="happyEyes" style="display:none" stroke="#34261C" stroke-width="6.5" stroke-linecap="round" fill="none">
+                <path d="M206 306 Q238 272 270 306"/><path d="M330 306 Q362 272 394 306"/>
+              </g>
+              <g id="sleepEyes" style="display:none" stroke="#34261C" stroke-width="5.5" stroke-linecap="round" fill="none">
+                <path d="M208 300 Q238 322 268 300"/><path d="M332 300 Q362 322 392 300"/>
+                <path d="M212 304 l-8 6 M264 304 l8 6 M336 304 l-8 6 M388 304 l8 6" stroke-width="3"/>
+              </g>
+
+              <!-- nose & mouth -->
+              <path d="M288 334 Q300 329 312 334 Q315 338 308 345 L302 350 Q300 351.5 298 350 L292 345 Q285 338 288 334 Z" fill="url(#noseGrad)"/>
+              <ellipse cx="295" cy="335" rx="4.5" ry="2" fill="#fff" opacity=".7"/>
+              <ellipse id="mouthOpen" cx="300" cy="370" rx="9" ry="0" fill="#B0625F"/>
+              <path d="M300 351 L300 360 M300 360 Q293 369 284 364 M300 360 Q307 369 316 364" stroke="#BE958A" stroke-width="2.3" fill="none" stroke-linecap="round"/>
+
+              <!-- whiskers -->
+              <g id="whiskL" fill="none" stroke-linecap="round">
+                <g stroke="#8C6A4E" stroke-opacity=".2" stroke-width="1.8" transform="translate(0 1.4)">
+                  <path d="M268 358 Q200 344 118 346"/><path d="M270 364 Q200 362 116 374"/><path d="M270 370 Q205 380 126 402"/>
+                </g>
+                <g stroke="#FFFFFF" stroke-width="1.7" opacity=".95">
+                  <path d="M268 358 Q200 344 118 346"/><path d="M270 364 Q200 362 116 374"/><path d="M270 370 Q205 380 126 402"/>
+                </g>
+              </g>
+              <g id="whiskR" fill="none" stroke-linecap="round">
+                <g stroke="#8C6A4E" stroke-opacity=".2" stroke-width="1.8" transform="translate(0 1.4)">
+                  <path d="M332 358 Q400 344 482 346"/><path d="M330 364 Q400 362 484 374"/><path d="M330 370 Q395 380 474 402"/>
+                </g>
+                <g stroke="#FFFFFF" stroke-width="1.7" opacity=".95">
+                  <path d="M332 358 Q400 344 482 346"/><path d="M330 364 Q400 362 484 374"/><path d="M330 370 Q395 380 474 402"/>
+                </g>
+              </g>
+
+              <use id="slotHatFront" href="#hat-star-f" style="display:none"/>
+            </g>
+
+            <g id="basketFront" style="display:none">
+              <path d="M62 565 C 70 620, 84 680, 100 712 Q300 748 500 712 C 516 680, 530 620, 538 565 Q300 618 62 565 Z" fill="url(#weave)"/>
+              <path d="M62 565 C 70 620, 84 680, 100 712 Q300 748 500 712 C 516 680, 530 620, 538 565 Q300 618 62 565 Z" fill="url(#basketShade)"/>
+              <path d="M62 565 Q300 618 538 565" fill="none" stroke="#C79560" stroke-width="18" stroke-linecap="round"/>
+              <path d="M82 560 Q300 608 518 560" fill="none" stroke="#E6BC88" stroke-width="3" stroke-linecap="round" opacity=".7"/>
+            </g>
+
+            <g id="paws">
+              <g id="pawL" filter="url(#plush)">
+                <ellipse cx="258" cy="642" rx="36" ry="27" fill="#FBF6EE"/>
+              </g>
+              <g stroke="#D3BFA6" stroke-width="2" stroke-linecap="round" opacity=".75">
+                <path d="M248 652 v9 M268 652 v9"/>
+              </g>
+              <g id="pawR">
+                <g filter="url(#plush)"><ellipse cx="342" cy="642" rx="36" ry="27" fill="#FBF6EE"/></g>
+                <g stroke="#D3BFA6" stroke-width="2" stroke-linecap="round" opacity=".75"><path d="M332 652 v9 M352 652 v9"/></g>
+              </g>
+            </g>
+          </g>
+        </g>
+
+        <!-- ============ carrot ============ -->
+        <g id="carrot" transform="translate(236 1022) rotate(-12) scale(.95)" style="display:none">
+          <ellipse cx="0" cy="104" rx="88" ry="12" fill="#6B4A33" opacity=".16" filter="url(#blur7)"/>
+          <g fill="#7CC655" filter="url(#plushSoft)">
+            <path d="M-6 -60 C -40 -80, -46 -130, -22 -140 C 0 -120, 2 -86, -6 -60Z"/>
+            <path d="M0 -62 C 0 -110, 20 -150, 44 -142 C 50 -110, 28 -80, 0 -62Z"/>
+            <path d="M-4 -58 C -50 -70, -76 -104, -64 -122 C -34 -116, -14 -88, -4 -58Z"/>
+          </g>
+          <path d="M-80 -20 C -80 -80, 80 -80, 80 -20 C 80 50, 20 95, 0 100 C -20 95, -80 50, -80 -20 Z" fill="url(#carrotGrad)" filter="url(#plushSoft)"/>
+          <ellipse cx="-30" cy="-44" rx="26" ry="12" fill="#fff" opacity=".2" filter="url(#blur7)"/>
+          <ellipse cx="-24" cy="-8" rx="15" ry="20" fill="#fff" stroke="#1D1D1D" stroke-width="2.5"/>
+          <ellipse cx="24" cy="-8" rx="15" ry="20" fill="#fff" stroke="#1D1D1D" stroke-width="2.5"/>
+          <ellipse cx="-22" cy="-6" rx="7" ry="12" fill="#2B6FD6"/>
+          <ellipse cx="26" cy="-6" rx="7" ry="12" fill="#2B6FD6"/>
+          <path d="M-30 22 C -32 32, -20 36, -12 30 C -6 25, -2 26, 0 30 C 2 26, 6 25, 12 30 C 20 36, 32 32, 30 22" stroke="#141414" stroke-width="4.5" fill="none" stroke-linecap="round"/>
+        </g>
+
+        <!-- ============ night ============ -->
+        <rect id="dusk" width="1000" height="1250" fill="url(#duskGrad)" pointer-events="none"/>
+        <ellipse id="lamp" cx="500" cy="760" rx="420" ry="380" fill="url(#lampGlow)" pointer-events="none"/>
+
+        <!-- ============ teaser wand ============ -->
+        <g id="wand" style="display:none" pointer-events="none">
+          <path d="M1110 -150 L1046 -46" stroke="#A7A39C" stroke-width="12" stroke-linecap="round"/>
+          <path id="wandLine" d="" fill="none" stroke="#7B6958" stroke-width="2" opacity=".8"/>
+          <g id="feather">
+            <g id="featherRot">
+              <rect x="-4" y="-6" width="8" height="14" rx="3" fill="#8B8B8B"/>
+              <path d="M0 10 C -12 40, -8 74, 4 102 C 14 74, 12 40, 0 10Z" fill="#6DAA5C"/>
+              <path d="M0 10 C 16 34, 30 60, 34 90 C 16 74, 6 44, 0 10Z" fill="#D9534F"/>
+              <path d="M0 10 C -18 30, -34 52, -40 80 C -20 66, -8 40, 0 10Z" fill="#F4EFE4"/>
+              <path d="M0 12 L2 96" stroke="#3D5C33" stroke-width="1.2"/>
+              <circle cx="0" cy="18" r="10" fill="#D9B24A"/>
+              <circle cx="-3" cy="15" r="3" fill="#fff" opacity=".7"/>
+              <path d="M-6 22 h12" stroke="#8B6A1E" stroke-width="2"/>
+            </g>
+          </g>
+        </g>
+      </svg>
+
+      <!-- cover typography -->
+      <div class="cv cv-top" style="--d:.35s">
+        <span>Vol.01 — The Soft Issue</span>
+        <span class="hide-sm">一只电子小猫 · 月刊</span>
+        <span id="cvDate">2026.09.27</span>
+      </div>
+      <div class="cv cv-sub" style="--d:.5s">
+        <span>The softest magazine for one very small cat</span>
+        <span class="hide-sm">第 <b id="cvIssue">001</b> 期</span>
+      </div>
+
+      <div class="cv cv-left" style="--d:.65s">
+        <div id="lookBlock">
+          <span class="kicker">本期造型 · Cover Look</span>
+          <h2 class="cv-title" id="cvTitle">黄油<br>小星星</h2>
+          <p class="cv-en" id="cvEn">Butter Star</p>
+          <p class="cv-note" id="cvNote">五个软软的角，一张圆圆的脸。</p>
+        </div>
+      </div>
+
+      <div class="cv cv-right" style="--d:.8s">
+        <div id="noBlock">
+          <div class="cv-no"><small>Nº</small><span id="cvNo">05</span></div>
+          <p class="cv-col-k">领饰 Neckwear</p>
+          <p class="cv-col" id="cvCollar">领口留白，露出围脖毛。</p>
+        </div>
+      </div>
+
+      <div class="cv sticker" style="--d:1s"><span>按住拖动<br><b>摸摸我</b></span></div>
+
+      <div class="cv cv-bottom" style="--d:.95s">
+        <div class="cv-mood">今日被摸 <b id="cvPets">0</b> 次<br>心情 · <em id="cvMood">有点想你</em></div>
+        <div class="cv-code">
+          <div class="barcode" id="barcode"></div>
+          <span>Nº001 · 小鱼干 ×1</span>
+        </div>
+      </div>
+
+      <div class="bubble" id="bubble" aria-live="polite"></div>
+      <div class="fx" id="fx" aria-hidden="true"></div>
+    </div>
+  </section>
+
+  <!-- ============ PANEL ============ -->
+  <aside class="panel" aria-label="衣帽间与互动">
+    <header class="p-head">
+      <span class="kicker">Wardrobe · 衣帽间</span>
+      <h1>今天穿<em>什么</em>？</h1>
+      <p class="p-lead">按住它的脑袋<b>左右轻抚</b>会呼噜，<b>点一下</b>它会喵。逗猫棒模式下晃一晃，它会伸出爪子。</p>
+    </header>
+
+    <section class="sec">
+      <h3><span class="n">01</span>头饰<i>Headwear</i></h3>
+      <div class="grid" id="hatGrid"></div>
+    </section>
+
+    <section class="sec">
+      <h3><span class="n">02</span>领饰<i>Neckwear</i></h3>
+      <div class="grid" id="collarGrid"></div>
+    </section>
+
+    <section class="sec">
+      <h3><span class="n">03</span>布景<i>The Set</i></h3>
+      <div class="row">
+        <button class="chip" data-prop="teddy" aria-pressed="false"><span class="dot"></span>泰迪熊</button>
+        <button class="chip" data-prop="carrot" aria-pressed="false"><span class="dot"></span>胡萝卜抱枕</button>
+        <button class="chip" data-prop="basket" aria-pressed="false"><span class="dot"></span>藤编篮</button>
+      </div>
+    </section>
+
+    <section class="sec">
+      <h3><span class="n">04</span>一起玩<i>Play</i></h3>
+      <div class="row">
+        <button class="chip" id="btnWand" aria-pressed="false"><span class="dot"></span>逗猫棒</button>
+        <button class="chip" id="btnSleep" aria-pressed="false"><span class="dot"></span>哄睡</button>
+        <button class="chip ghost" id="btnMeow">叫它一声</button>
+      </div>
+    </section>
+
+    <section class="sec stats">
+      <div class="stat"><b id="statPets">0</b><span>今日摸摸</span></div>
+      <div class="stat"><b id="statMeows">0</b><span>今日喵过</span></div>
+      <div class="stat"><b id="statDays">1</b><span>相识天数</span></div>
+    </section>
+
+    <section class="sec">
+      <label class="name">
+        <span class="n">05</span><span>它叫</span>
+        <input id="nameInput" maxlength="12" spellcheck="false" autocomplete="off" />
+      </label>
+    </section>
+
+    <footer class="p-foot">Made softly · 所有数据只存在你的浏览器里</footer>
+  </aside>
+</main>
+
+<script src="app.js"></script>
+</body>
+</html>
